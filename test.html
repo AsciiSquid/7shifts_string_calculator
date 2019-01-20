@@ -11,12 +11,17 @@
             reason: "Standard input"
             },
             {
+            in: "//.\n1.2.3",
+            out: 6,
+            reason: "Standard use of custom delimeter"
+            },
+            {
             in: "",
             out: 0,
             reason: "No input"
             },
             {
-            in: ",,,",
+            in: "//,\n,,,",
             out: null,
             reason: "Only separators"
             },
@@ -36,13 +41,18 @@
             reason: "blatantly invalid input"
             },
             {
-            in: "1,\n2,\n3",
+            in: "//ab\n1ab2ab3",
             out: 6,
-            reason: "includes newline"
+            reason: "greater than one delimiter"
+            },
+            {
+            in: "//\n123",
+            out: 6,
+            reason: "empty delimeter"
             }
         ]
         for (var i=0; i<cases.length; i++) {
-            var result = int_Add(cases[i].in);
+            var result = string_to_Sum(cases[i].in)
             console.log(`Case #${i}: "${cases[i].in}" > ${result}`);
             if (result === cases[i].out) {
                 console.log(cases[i].reason + " case SUCESS");

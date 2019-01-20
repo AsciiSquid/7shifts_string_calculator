@@ -2,14 +2,15 @@
 //Dawson Wiebe
 
 /*\ Calculates the sum of numbers provided within a string
-str_numbers: String of numbers separated by a ',' symbol
+str_numbers: String of numbers separated by a specified delimeter string
+str_delimeter: String used to separate the provided numbers
 return: int value of the calculated sum or null if incapable
 \*/
-function int_Add(str_numbers) {
+function int_Add(str_numbers, str_delimeter) {
     //Edge case for empty string
     if (!str_numbers) return 0;
-    //Splits the string into an array, ignores newline
-    var str_addends = str_numbers.replace(/\n/g, '').split(','),
+    //Splits the string into an array
+    var str_addends = str_numbers.split(str_delimeter),
     //Maps the array of strings to an array of Int
         int_addends = str_addends.map((str_num) => {
             //Fixed radix value to avoid any argument overlap in the map function
@@ -24,21 +25,19 @@ function int_Add(str_numbers) {
     else {return sum;}
 }
 
-/*\ Processes the input/output from the html page
-id_input: element providing the string input
-id_output: element reciving the numeric output
-return: Promise{resolve: the calculated sum by int_Add, reject: the resulting error message}
+/*\ Parses the provided string and calculates the sum
+str_input: string providing appropreate input
+return: the calculated sum, or null
 \*/
-function calculateSum(elm_in, elm_out) {
-    return new Promise((resolve, reject) => {
-        var sum_calc = 0;
-        //Calculates sum while catching any errors
-        try {
-            sum_calc = int_Add(elm_in.value)
-            if (sum_calc === null) throw new EvalError;
-        } catch(error) {reject(error)}
-        //Sends results to the output element and resolves
-        elm_out.innerHTML = sum_calc.toString();
-        resolve(sum_calc);
-    });
+function string_to_Sum(str_input) {
+    var str_num = "",
+        str_del = ",";
+    if (str_input.startsWith('//')) {
+        //Retrieves specified delimiter
+        str_del = str_input.slice(2).split('\n')[0];
+        str_num = str_input.slice(str_del.length + 3);
+    } else {
+        str_num = str_input;
+    }
+    return int_Add(str_num, str_del);
 }
