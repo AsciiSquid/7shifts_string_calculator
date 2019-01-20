@@ -10,11 +10,14 @@ function int_Add(str_numbers, str_delimeter) {
     //Edge case for empty string
     if (!str_numbers) return 0;
     //Splits the string into an array
-    var str_addends = str_numbers.split(str_delimeter),
+    var str_addends = str_numbers.split(str_delimeter);
     //Maps the array of strings to an array of Int
-        int_addends = str_addends.map((str_num) => {
+    var int_addends = str_addends.map((str_num) => {
             //Fixed radix value to avoid any argument overlap in the map function
-            return parseInt(str_num, 10);
+            let int = parseInt(str_num, 10);
+            //Checks for negatives
+            if (int < 0) {return NaN;}
+            else {return int;} 
         });
     //Adds together the sum
     var sum = int_addends.reduce((sum, addend) => {

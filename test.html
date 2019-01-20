@@ -49,6 +49,16 @@
             in: "//\n123",
             out: 6,
             reason: "empty delimeter"
+            },
+            {
+            in: "1,2,-3",
+            out: null,
+            reason: "use of negatives"
+            },
+            {
+            in: "//-\n1-2-3",
+            out: 6,
+            reason: "Use of dash as delimiter" 
             }
         ]
         for (var i=0; i<cases.length; i++) {
