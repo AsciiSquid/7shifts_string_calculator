@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="str_calc.js"></script>
+    <script type="text/javascript">
+    function testStart() {
+        var cases = [
+            {
+            in: "1,2,3",
+            out: 6,
+            reason: "Standard input"
+            },
+            {
+            in: "",
+            out: 0,
+            reason: "No input"
+            },
+            {
+            in: ",,,",
+            out: null,
+            reason: "Only separators"
+            },
+            {
+            in: "1001,3000,5000",
+            out: 9001,
+            reason: "Large number"
+            },
+            {
+            in: "0,0,0",
+            out: 0,
+            reason: "sum to zero"
+            },
+            {
+            in: "nope",
+            out: null,
+            reason: "blatantly invalid input"
+            }
+        ]
+        for (var i=0; i<cases.length; i++) {
+            var result = int_Add(cases[i].in);
+            console.log(`Case #${i}: "${cases[i].in}" > ${result}`);
+            if (result === cases[i].out) {
+                console.log(cases[i].reason + " case SUCESS");
+            } else {
+                console.log(cases[i].reason + " case FAILURE!\nExpected " + cases[i].out);
+            }
+        }
+    }
+    </script>
+</head>
+<body onload="testStart()">
+    Running test cases, refer to console.
+</body>
+</html>
