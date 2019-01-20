@@ -34,6 +34,11 @@
             in: "nope",
             out: null,
             reason: "blatantly invalid input"
+            },
+            {
+            in: "1,\n2,\n3",
+            out: 6,
+            reason: "includes newline"
             }
         ]
         for (var i=0; i<cases.length; i++) {

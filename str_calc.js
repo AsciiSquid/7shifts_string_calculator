@@ -8,8 +8,8 @@ return: int value of the calculated sum or null if incapable
 function int_Add(str_numbers) {
     //Edge case for empty string
     if (!str_numbers) return 0;
-    //Splits up the numbers into an array
-    var str_addends = str_numbers.split(','),
+    //Splits the string into an array, ignores newline
+    var str_addends = str_numbers.replace(/\n/g, '').split(','),
     //Maps the array of strings to an array of Int
         int_addends = str_addends.map((str_num) => {
             //Fixed radix value to avoid any argument overlap in the map function
