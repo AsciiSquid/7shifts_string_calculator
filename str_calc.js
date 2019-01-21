@@ -17,7 +17,9 @@ function int_Add(str_numbers, str_delimeter) {
             let int = parseInt(str_num, 10);
             //Checks for negatives
             if (int < 0) {return NaN;}
-            else {return int;} 
+            //Check to ignore numbers greater than 1000
+            else if (int > 1000) {return 0}
+            else {return int;}
         });
     //Adds together the sum
     var sum = int_addends.reduce((sum, addend) => {
